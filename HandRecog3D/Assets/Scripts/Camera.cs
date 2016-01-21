@@ -5,9 +5,7 @@ using OpenCvSharp.CPlusPlus;
 
 class Camera
 {
-
     // 変数宣言
-
     private VideoCapture video;
     private Mat m_img = new Mat();
     private IplImage i_img = new IplImage();

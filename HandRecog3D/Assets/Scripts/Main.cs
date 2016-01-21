@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.CPlusPlus;
 using UnityEngine;
+using System.Collections;
 
 
 
@@ -10,13 +11,22 @@ public class Main : MonoBehaviour
     IplImage i_img1, i_img2;
     int[,] ps_arr1, ps_arr2;    // 縦横それぞれの点情報を格納
     int[,,] ps_arr3D, t_arr;
+    double[,] pl_arrXZ;
+    GameObject refObj;          // 3Dポリゴン取得用
     public GameObject dot;
+    CreatePolygonMesh polygon;  // CreatePolygonMesh クラス参照用
+    ArrayList vec = new ArrayList();
 
     IplImage h_img1 = new IplImage();
     IplImage h_img2 = new IplImage();
     Camera cam1 = new Camera();
     Camera cam2 = new Camera();
     Graphic g = new Graphic();
+
+    /*     デバッグ用（FPS）     */
+    int   frameCount;
+    float prevTime;
+    /* ------------------------- */
 
     // Use this for initialization
     void Start()
@@ -35,11 +45,26 @@ public class Main : MonoBehaviour
         ps_arr2 = new int[GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL, GlobalVar.CAMERA_WIDTH / GlobalVar.POINT_INTERVAL];
         ps_arr3D = new int[GlobalVar.CAMERA_WIDTH / GlobalVar.POINT_INTERVAL, GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL, GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL];
         t_arr = new int[(GlobalVar.CAMERA_WIDTH / GlobalVar.POINT_INTERVAL) + 2, (GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL) + 2, (GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL) + 2];
+        pl_arrXZ = new double[GlobalVar.VERTICE_NUM / 2, 2];
+
+        // 3Dポリゴン指定
+        refObj = GameObject.Find("Donuts");
+        polygon = refObj.GetComponent<CreatePolygonMesh>();
+
+        /*     デバッグ用（FPS）     */
+        frameCount = 0;
+        prevTime = 0.0f;
+        /* ------------------------- */
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*     デバッグ用（FPS）     */
+        frameCount++;
+        float time = Time.realtimeSinceStartup - prevTime;
+        /* ------------------------- */
+
         // カメラ画像の取得
         i_img1 = cam1.getCameraImage();
         i_img2 = cam2.getCameraImage();
@@ -68,8 +93,75 @@ public class Main : MonoBehaviour
         // 縦横の点情報を結合して3次元配列に格納
         bondPosStaArr(ps_arr2, ps_arr1, ps_arr3D);
 
+        // 情報が存在するレイヤー(Y軸方向)において、内部外部判定を行う
+        for (int y = 0; y < GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL; y++)
+        {
+            // 情報が存在する場合
+            if (isExsistInfo3DArrY(ps_arr3D, y))
+            {
+                // 同じ階層にポリゴンがある場合
+                if (polygon.isExsistPolygon(y * GlobalVar.POINT_INTERVAL))
+                {
+                    // ポリゴンの座標を取得
+                    polygon.getPolygonXZ(pl_arrXZ);
+                    // ベクトル取得
+                    polygon.getPolygonVector(vec, pl_arrXZ);
+                    // 取得したベクトルと手情報から内部外部判定を行う
+                    //polygon.getIEDecisionArr(vec, ps_arr3D, y);
+
+                    // 内部に手情報がある場合
+                    if (polygon.isIEDecision(vec, ps_arr3D, y))
+                    {
+                        Debug.Log("内部に手有り");
+
+                    }
+                }
+                // 同じ階層にポリゴンがない場合
+                else
+                {
+
+                }
+            }
+            // 情報が存在しない場合
+            else
+            {
+
+            }
+        }
+
+
         // 3D表示
         display3Ddot(ps_arr3D);
+
+        /*     デバッグ用（FPS）     */
+        if (time >= 0.5f)
+        {
+            //Debug.LogFormat("{0}fps", frameCount/time);
+            frameCount = 0;
+            prevTime = Time.realtimeSinceStartup;
+        }
+        /* ------------------------- */
+    }
+
+    //---------------------------------------------------------
+    // 関数名 : isExsistInfo3DArrY
+    // 機能   : 三次元配列について、指定されたYの時、情報が格納されているか確認する
+    // 引数   : xyz_arr/ y/
+    // 戻り値 : true/ false/
+    //---------------------------------------------------------
+    private bool isExsistInfo3DArrY(int[,,] xyz_arr, int y)
+    {
+        for (int x = 0; x < GlobalVar.CAMERA_WIDTH / GlobalVar.POINT_INTERVAL; x++)
+        {
+            for (int z = 0; z < GlobalVar.CAMERA_HEIGHT / GlobalVar.POINT_INTERVAL; z++)
+            {
+                if (xyz_arr[x, y, z] == 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     //---------------------------------------------------------
@@ -133,9 +225,9 @@ public class Main : MonoBehaviour
     private void display3Ddot(int[,,] arr)
     {
         // 変数宣言
-        float i_x = -160;
+        float i_x = 0;
         float i_y = 0;
-        float i_z = -120;
+        float i_z = -240;
         float fps = 0.05F;
         float t_x, t_y, t_z;
 
