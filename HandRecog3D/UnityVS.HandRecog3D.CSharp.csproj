@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera.cs" />
+    <Compile Include="Assets\Scripts\CreatePolygonMesh.cs" />
     <Compile Include="Assets\Scripts\GlobalVar.cs" />
     <Compile Include="Assets\Scripts\Graphic.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
