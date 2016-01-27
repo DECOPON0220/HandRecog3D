@@ -14,7 +14,7 @@ public class CreatePolygonMesh : MonoBehaviour
     private int[] t_triangles;
     private Vector2[] t_uv;
 
-    int num = 32;
+    int num = 39;
     int y_num = 4;
     private float[] xdata;
     private float[] ydata;
@@ -32,42 +32,52 @@ public class CreatePolygonMesh : MonoBehaviour
         ydata = new float[y_num];
 
         // 外部
-        xdata[0] = 130; zdata[0] = 170;
-        xdata[1] = 130; zdata[1] = 150;
-        xdata[2] = 130; zdata[2] = 130;
-        xdata[3] = 130; zdata[3] = 110;
-        xdata[4] = 130; zdata[4] = 90;
-        xdata[5] = 130; zdata[5] = 70;
-        xdata[6] = 150; zdata[6] = 70;
-        xdata[7] = 170; zdata[7] = 70;
-        xdata[8] = 190; zdata[8] = 70;
-        xdata[9] = 210; zdata[9] = 70;
-        xdata[10] = 230; zdata[10] = 70;
-        xdata[11] = 230; zdata[11] = 90;
-        xdata[12] = 230; zdata[12] = 110;
-        xdata[13] = 230; zdata[13] = 130;
-        xdata[14] = 230; zdata[14] = 150;
-        xdata[15] = 230; zdata[15] = 170;
-        xdata[16] = 210; zdata[16] = 170;
-        xdata[17] = 190; zdata[17] = 170;
-        xdata[18] = 170; zdata[18] = 170;
-        xdata[19] = 150; zdata[19] = 170;
+        xdata[0] = 120; zdata[0] = 180;
+        xdata[1] = 120; zdata[1] = 160;
+        xdata[2] = 120; zdata[2] = 140;
+        xdata[3] = 120; zdata[3] = 120;
+        xdata[4] = 120; zdata[4] = 100;
+        xdata[5] = 120; zdata[5] = 80;
+
+        xdata[6] = 120; zdata[6] = 60;
+        xdata[7] = 140; zdata[7] = 60;
+        xdata[8] = 160; zdata[8] = 60;
+        xdata[9] = 180; zdata[9] = 60;
+        xdata[10] = 200; zdata[10] = 60;
+        xdata[11] = 220; zdata[11] = 60;
+
+        xdata[12] = 240; zdata[12] = 60;
+        xdata[13] = 240; zdata[13] = 80;
+        xdata[14] = 240; zdata[14] = 100;
+        xdata[15] = 240; zdata[15] = 120;
+        xdata[16] = 240; zdata[16] = 140;
+        xdata[17] = 240; zdata[17] = 160;
+
+        xdata[18] = 240; zdata[18] = 180;
+        xdata[19] = 220; zdata[19] = 180;
+        xdata[20] = 200; zdata[20] = 180;
+        xdata[21] = 180; zdata[21] = 180;
+        xdata[22] = 160; zdata[22] = 180;
+        xdata[23] = 140; zdata[23] = 180;
 
         // 内部
-        xdata[20] = 150; zdata[20] = 70;
-        xdata[21] = 150; zdata[21] = 90;
-        xdata[22] = 150; zdata[22] = 110;
-        xdata[23] = 150; zdata[23] = 130;
-        xdata[24] = 150; zdata[24] = 150;
+        xdata[24] = 240; zdata[24] = 80;
+        xdata[25] = 220; zdata[25] = 80;
+        xdata[26] = 200; zdata[26] = 80;
+        xdata[27] = 180; zdata[27] = 80;
+        xdata[28] = 160; zdata[28] = 80;
+        xdata[29] = 140; zdata[29] = 80;
 
-        xdata[25] = 170; zdata[25] = 150;
-        xdata[26] = 190; zdata[26] = 150;
-        xdata[27] = 210; zdata[27] = 150;
+        xdata[30] = 140; zdata[30] = 100;
+        xdata[31] = 140; zdata[31] = 120;
+        xdata[32] = 140; zdata[32] = 140;
 
-        xdata[28] = 210; zdata[28] = 130;
-        xdata[29] = 210; zdata[29] = 110;
-        xdata[30] = 210; zdata[30] = 90;
-        xdata[31] = 210; zdata[31] = 70;
+        xdata[33] = 140; zdata[33] = 160;
+        xdata[34] = 160; zdata[34] = 160;
+        xdata[35] = 180; zdata[35] = 160;
+        xdata[36] = 200; zdata[36] = 160;
+        xdata[37] = 220; zdata[37] = 160;
+        xdata[38] = 240; zdata[38] = 160;
 
         ydata[0] = 70; ydata[1] = 90; ydata[2] = 150; ydata[3] = 170;
 
@@ -81,27 +91,27 @@ public class CreatePolygonMesh : MonoBehaviour
         {
             // 底面
             new Vector3(xdata[0], ydata[0], zdata[0]),
-            new Vector3(xdata[5], ydata[0], zdata[5]),
-            new Vector3(xdata[10], ydata[0], zdata[10]),
-            new Vector3(xdata[15], ydata[0], zdata[15]),
+            new Vector3(xdata[6], ydata[0], zdata[6]),
+            new Vector3(xdata[12], ydata[0], zdata[12]),
+            new Vector3(xdata[18], ydata[0], zdata[18]),
 
             // 下から二層目
-            new Vector3(xdata[20], ydata[1], zdata[20]),
             new Vector3(xdata[24], ydata[1], zdata[24]),
-            new Vector3(xdata[27], ydata[1], zdata[27]),
-            new Vector3(xdata[31], ydata[1], zdata[31]),
+            new Vector3(xdata[29], ydata[1], zdata[29]),
+            new Vector3(xdata[33], ydata[1], zdata[33]),
+            new Vector3(xdata[38], ydata[1], zdata[38]),
 
             // 上から二層目
-            new Vector3(xdata[20], ydata[2], zdata[20]),
             new Vector3(xdata[24], ydata[2], zdata[24]),
-            new Vector3(xdata[27], ydata[2], zdata[27]),
-            new Vector3(xdata[31], ydata[2], zdata[31]),
+            new Vector3(xdata[29], ydata[2], zdata[29]),
+            new Vector3(xdata[33], ydata[2], zdata[33]),
+            new Vector3(xdata[38], ydata[2], zdata[38]),
 
             // 上面
             new Vector3(xdata[0], ydata[3], zdata[0]),
-            new Vector3(xdata[5], ydata[3], zdata[5]),
-            new Vector3(xdata[10], ydata[3], zdata[10]),
-            new Vector3(xdata[15], ydata[3], zdata[15])
+            new Vector3(xdata[6], ydata[3], zdata[6]),
+            new Vector3(xdata[12], ydata[3], zdata[12]),
+            new Vector3(xdata[18], ydata[3], zdata[18])
         };
         // 三角形ごとの頂点インデックスを指定
         int[] triangles = new int[]
@@ -127,8 +137,8 @@ public class CreatePolygonMesh : MonoBehaviour
             0,13,1,
             0,3,15,
             0,15,12,
-            3,2,14,
-            3,14,15,
+            1,14,2,
+            1,13,14,
 
             // 横（内）
             4,9,5,
@@ -139,14 +149,14 @@ public class CreatePolygonMesh : MonoBehaviour
             6,10,11,
             
             // 横（それ以外）
-            4,2,1,
-            4,7,2,
-            1,13,4,
-            4,13,8,
-            8,13,14,
-            14,11,8,
-            14,2,7,
-            14,7,11
+            2,4,3,
+            3,4,7,
+            3,7,15,
+            7,11,15,
+            15,11,14,
+            11,8,14,
+            14,8,2,
+            8,4,2
         };
         // UVの指定 (頂点数と同じ数を指定すること)
         Vector2[] uv = new Vector2[]
@@ -566,6 +576,7 @@ public class CreatePolygonMesh : MonoBehaviour
             }
         }
 
+        // 計算ミスによるノイズを除去
         delArrNoise(flag, (y - 5) / 10);
 
         // 補完
@@ -588,10 +599,45 @@ public class CreatePolygonMesh : MonoBehaviour
                 {
                     if (flag[x, y, z] == 2)
                     {
-                        if (flag[x - 1, y, z - 1] != 2 && flag[x - 1, y, z] != 2 && flag[x - 1, y, z + 1] != 2 &&
-                            flag[x, y, z - 1] != 2 && flag[x, y, z  + 1] != 2 &&
-                            flag[x + 1, y, z - 1] != 2 && flag[x + 1, y, z] != 2 && flag[x + 1, y, z + 1] != 2
-                            )
+                        int f = 0;
+
+                        if (flag[x - 1, y, z - 1] != 2) f++;
+                        if (flag[x - 1, y, z] != 2) f++;
+                        if (flag[x - 1, y, z + 1] != 2) f++;
+                        if (flag[x, y, z - 1] != 2) f++;
+                        if (flag[x, y, z + 1] != 2) f++;
+                        if (flag[x + 1, y, z - 1] != 2) f++;
+                        if (flag[x + 1, y, z] != 2) f++;
+                        if (flag[x + 1, y, z + 1] != 2) f++;
+
+                        if (f >= 7)
+                        {
+                            flag[x, y, z] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        for (int z = 0; z < m_z - 1; z++)
+        {
+            for (int x = m_x - 1; x > 0; x--)
+            {
+                if (x != 0 && y != 0)
+                {
+                    if (flag[x, y, z] == 2)
+                    {
+                        int f = 0;
+
+                        if (flag[x - 1, y, z - 1] != 2) f++;
+                        if (flag[x - 1, y, z] != 2) f++;
+                        if (flag[x - 1, y, z + 1] != 2) f++;
+                        if (flag[x, y, z - 1] != 2) f++;
+                        if (flag[x, y, z + 1] != 2) f++;
+                        if (flag[x + 1, y, z - 1] != 2) f++;
+                        if (flag[x + 1, y, z] != 2) f++;
+                        if (flag[x + 1, y, z + 1] != 2) f++;
+
+                        if (f >= 6)
                         {
                             flag[x, y, z] = 1;
                         }
@@ -670,7 +716,7 @@ public class CreatePolygonMesh : MonoBehaviour
         // 第一層
         if (y > ydata[0] && y < ydata[1])
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 24; i++)
             {
                 v.Add(new Complex(xdata[i], 240 + zdata[i]));
             }
@@ -680,17 +726,17 @@ public class CreatePolygonMesh : MonoBehaviour
         // 第二層
         else if (y > ydata[1] && y < ydata[2])
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 13; i++)
             {
                 v.Add(new Complex(xdata[i], 240 + zdata[i]));
             }
 
-            for (int i = 20; i < 32; i++)
+            for (int i = 24; i < 39; i++)
             {
                 v.Add(new Complex(xdata[i], 240 + zdata[i]));
             }
 
-            for (int i = 10; i < 20; i++)
+            for (int i = 18; i < 24; i++)
             {
                 v.Add(new Complex(xdata[i], 240 + zdata[i]));
             }
@@ -701,7 +747,7 @@ public class CreatePolygonMesh : MonoBehaviour
         // 第三層
         if (y > ydata[2] && y < ydata[3])
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 24; i++)
             {
                 // 配列に格納
                 v.Add(new Complex(xdata[i], 240 + zdata[i]));
